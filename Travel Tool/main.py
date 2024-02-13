@@ -21,18 +21,22 @@ def get_weather(city, country):
         description = data["weather"][0]["description"]
         city_ascii = pyfiglet.figlet_format(city)
         country_ascii = pyfiglet.figlet_format(country)
-        output = f"{city_ascii.strip()}, {country_ascii.strip()}\n\n" + f"Currently: {description}\n" + f"Temperature: {temperature}°C\n" + f"Feels like: {feels_like}°C\n"
+        if unit_system_choice['unit_system'] == 'Imperial':
+            output = f"{city_ascii.strip()}, {country_ascii.strip()}\n\n" + f"Currently: {description}\n" + f"Temperature: {temperature}°F\n" + f"Feels like: {feels_like}°F\n"
+        else:
+            output = f"{city_ascii.strip()}, {country_ascii.strip()}\n\n" + f"Currently: {description}\n" + f"Temperature: {temperature}°C\n" + f"Feels like: {feels_like}°C\n"
         return chalk.green(output)
     else:
         return chalk.red("Error: Unable to retrieve weather information")
 
-print(chalk.cyanBright("Welcome to the travel tool! \n This tool allows you to calculate the distance between cities and \n the current weather conditions to make sure you're prepared for anything!\n (requires the command line interface and makes calls to weathermap API)\n" ))
+print(chalk.cyanBright("Welcome to the travel tool! \nThis tool allows you to calculate the distance between cities and \nthe current weather conditions to make sure you're prepared for anything! \n(requires the command line interface and makes calls to weathermap API)\n" ))
 print(chalk.cyanBright("If you ever want to exit the program, press ctrl + c and the program will end abruptly\n"))
 
 while True:
+    print('(Use the arrow keys to change your selection.\nPress enter when you have decided)')
     unit_system_choice = inquirer.prompt([
         inquirer.List('unit_system',
-                      message=chalk.cyanBright('Choose preferred unit system (Use the arrow keys to change your selection. Press enter when you have decided): '),
+                      message=chalk.cyanBright('Choose preferred unit system:'),
                       choices=['Metric', 'Imperial'],
                       default='Metric')
     ])
