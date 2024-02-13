@@ -100,9 +100,10 @@ while True:
 
         # Get weather information for the destination city
         print("\n Weather information for " + destination_location)
+        
         print(get_weather(destination_city['name'], destination_city['country']))
 
         restart_choice = input(chalk.cyanBright('Do you want to travel to try another destination? (yes/no): '))
 
         if restart_choice.lower() != 'yes':
-            break
+            exit()
