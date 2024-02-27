@@ -21,4 +21,4 @@ if trails_data:
         print(f"Description: {trail_description}\n")
 else:
     print("No trail data found")
-# should receive the coordinates of the location, the trail name and trail description
+# should receive the coordinates of the location, the trail name, and the trail description
